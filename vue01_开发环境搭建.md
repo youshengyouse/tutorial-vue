@@ -1,11 +1,15 @@
-> QQ 共同学习群(Vue):3180555323
+![vue01a](./imgs_tutorial/vue01a.jpg)
 
+> QQ 共同学习群(**Vue**):  3180555323
+> QQ 共同学习群(**laravel**): 2922800186
 - lerna 官方网站：https://lerna.js.org/
 - vue 官方网站：https://cn.vuejs.org/
 - vue-cli 官方网站：https://cli.vuejs.org/zh/
 - vuex 官方网站：https://vuex.vuejs.org/zh/
 - vue-router 官方网站：https://router.vuejs.org/zh/
 - element-ui 官方网站：https://element.eleme.cn/#/zh-CN/
+
+
 
 # 搭建前端开发环境
 
