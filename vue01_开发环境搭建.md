@@ -1,30 +1,39 @@
-- lerna官方网站：https://lerna.js.org/
-- vue官方网站：https://cn.vuejs.org/
-- vue-cli官方网站：https://cli.vuejs.org/zh/
-- vuex官方网站：https://vuex.vuejs.org/zh/
-- vue-router官方网站：https://router.vuejs.org/zh/
-- element-ui官方网站：https://element.eleme.cn/#/zh-CN/
+> QQ 共同学习群(Vue):3180555323
+
+- lerna 官方网站：https://lerna.js.org/
+- vue 官方网站：https://cn.vuejs.org/
+- vue-cli 官方网站：https://cli.vuejs.org/zh/
+- vuex 官方网站：https://vuex.vuejs.org/zh/
+- vue-router 官方网站：https://router.vuejs.org/zh/
+- element-ui 官方网站：https://element.eleme.cn/#/zh-CN/
 
 # 搭建前端开发环境
 
-> 以下使用的是npm
+> 以下使用的是 npm
 
-### 1. 安装git
+### 1. 安装 git
+
 下载地址： https://www.git-scm.com/download/win
 
-### 2. 安装nodejs
+### 2. 安装 nodejs
+
 下载地址： http://nodejs.cn/download/
 
 ### 3. 全局安装 lerna，yarn，@vue/cli
+
 ```shell
 $ npm install --global lerna yarn @vue/cli // 耗时约4分钟(新装)，安装过程见01
 ```
-### 4.初始化lerna
+
+### 4.初始化 lerna
+
 ```shell
 $ lerna init # 当前目录为F:\www\tutorials，耗时11秒，安装过程及生成内容见02
 # 生成package.json，lerna.json，和packages目录
 ```
-修改lerna.json如下
+
+修改 lerna.json 如下
+
 ```json
 {
   "packages": ["0001_vue/*","node2/*"],
@@ -33,19 +42,22 @@ $ lerna init # 当前目录为F:\www\tutorials，耗时11秒，安装过程及�
 #packages改为["0001_vue/*","node2/*"]，并删除生成的空目录packages
 
 ```
-顶层package.json如下
+
+顶层 package.json 如下
+
 ```json
 {
   "name": "root",
   "private": true,
   "devDependencies": {
     "lerna": "^3.20.2"
-  }  
+  }
 }
 # 不用修改
 ```
 
-#### 5.新建vue项目
+#### 5.新建 vue 项目
+
 ```shell
 # 以下工作目录全是 F:\tutorials\0001_vue
 $ vue create lesson01   # 耗时4分15秒，在vscode终端执行，使用vue_tutorial的预置也可手动
@@ -57,6 +69,7 @@ $ lerna run serve --scope=lesson01 --stream # 启动耗时19秒，启动记录�
 #$ lerna run serve --concurrency 2 --stream  # 同时启动2个个服务都
 # 如果出错，请三清，清缓存，删node_modules目录，删package-lock.json再bootstrap
 ```
+
 #### 6.本地安装常用库
 
 下载源码
@@ -100,7 +113,7 @@ $ npm run dev # 这里有官方提供的20个例子，会在后续的专门课�
 
 ```
 
-修改lesson01和lesson02下package.json中相关依赖的版本
+修改 lesson01 和 lesson02 下 package.json 中相关依赖的版本
 
 ```shell
 # 修改了3处
@@ -139,18 +152,18 @@ $ npm run dev # 这里有官方提供的20个例子，会在后续的专门课�
 
 ```
 
-重新安装lesson01和lesson02依赖
+重新安装 lesson01 和 lesson02 依赖
 
 ```shell
 # 清除相应文件和目录
 $ lerna clean           # 耗时1分40秒，删除上面2个包中的node-modules
-$ rm -rf node_modules 
+$ rm -rf node_modules
 $ rm package-lock.json
 $ npm cache clean --force
 $ lerna link convert # 这一步很关键，见下面详细描述
 
-$ lerna bootstrap --hoist 
-$ lerna run serve --scope=lesson01 --stream 
+$ lerna bootstrap --hoist
+$ lerna run serve --scope=lesson01 --stream
 $ lerna run dev --scope=vuex --stream
 ```
 
@@ -401,46 +414,48 @@ $ lerna run dev --scope=vuex --stream
 
 ```
 
-
-
 # 二：编辑器准备
 
-- Vscode:      js,css,html等前端语言编辑器(eslint+prettier)
-- phpstorm:  php 编辑器
-### A: VSCode配置
+- Vscode: js,css,html 等前端语言编辑器(eslint+prettier)
+- phpstorm: php 编辑器
+
+### A: VSCode 配置
+
 #### 格式化和校验
-- 安装扩展eslint: 在扩展中搜eslint，安装即可，扩展eslint是基于eslint这个node包工作的，可项目或全局安装eslint包
-- 安装扩展Prettier - Code formatter：这个扩展要使用到node包prettier，所以得全局或项目内安装它
+
+- 安装扩展 eslint: 在扩展中搜 eslint，安装即可，扩展 eslint 是基于 eslint 这个 node 包工作的，可项目或全局安装 eslint 包
+- 安装扩展 Prettier - Code formatter：这个扩展要使用到 node 包 prettier，所以得全局或项目内安装它
 - 安装扩展 EditorConfig for VS Code: 参考 `https://blog.csdn.net/Gabriel_wei/article/details/90286668`
+
 ```shell
 $ npm install -g eslint            # 方便所有项目都使用
 $ npm install -g prettier          # 扩展 Prettier - Code formatter 要用到它
 $ npm install -g editorconfig
 ```
+
 #### 其它
-- 终端shell环境配置: `"terminal.integrated.shell.windows": "D:\\01Program Files\\Git\\bin\\bash.exe",`
-- 安装自己喜欢的主题: 我装AS Roma Dark，在扩展中搜theme，出来一堆，网上能搜到好多主题推荐，在`https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs`上搜到好多
-- vetur扩展：是开发vue必装扩展
-- Chinese Lorem：输入jw按tab就可以生成假文字，是汉字的，比较好用，jw50表示生成50个汉字
-- Bracket Pair Colorizer: 这个实用，不同级别的括号使用不同的颜色区分，它有2个版本，我装的是第2版
+
+- 终端 shell 环境配置: `"terminal.integrated.shell.windows": "D:\\01Program Files\\Git\\bin\\bash.exe",`
+- 安装自己喜欢的主题: 我装 AS Roma Dark，在扩展中搜 theme，出来一堆，网上能搜到好多主题推荐，在`https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs`上搜到好多
+- vetur 扩展：是开发 vue 必装扩展
+- Chinese Lorem：输入 jw 按 tab 就可以生成假文字，是汉字的，比较好用，jw50 表示生成 50 个汉字
+- Bracket Pair Colorizer: 这个实用，不同级别的括号使用不同的颜色区分，它有 2 个版本，我装的是第 2 版
 - bracket-padder: 这个是为了提高效率用，会成对输入括号{}{}()
 - open in browser: 可右键打开浏览器
 - javascript(es6) code snippets，快速输入代码用
 - 激活`emmet`，在配置中搜`emmet`，勾选 `trigger expansion on tab`
 
-### B:PHPStorm配置
-- 终端shell环境配置: File -> Setting ->Tools -> Terminal，将shell path改为`D:\01Program Files\Git\bin\bash.exe`，并安装`native terminal`
-- 安装自己喜欢的主题: File -> Setting -> Plugins 中 输入 theme就可以搜到一堆主题，我一下子安装了10个主题
-- ssh配置：远程连接服务器，`Tools -> Deployment -> Configuration`
-- 数据库配置:` View -> Tool Window -> Database`,第一次会提示下载相应的驱动
+### B:PHPStorm 配置
 
-
-
-
+- 终端 shell 环境配置: File -> Setting ->Tools -> Terminal，将 shell path 改为`D:\01Program Files\Git\bin\bash.exe`，并安装`native terminal`
+- 安装自己喜欢的主题: File -> Setting -> Plugins 中 输入 theme 就可以搜到一堆主题，我一下子安装了 10 个主题
+- ssh 配置：远程连接服务器，`Tools -> Deployment -> Configuration`
+- 数据库配置:`View -> Tool Window -> Database`,第一次会提示下载相应的驱动
 
 # 安装过程
 
 ### 01：全局安装 lerna，yarn，@vue/cli
+
 ```shell
 $ npm install --global lerna yarn @vue/cli
 npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
@@ -457,7 +472,9 @@ npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@
 removed 1 package and updated 3 packages in 55.988s
 
 ```
-### 02：lerna初始化
+
+### 02：lerna 初始化
+
 ```shell
 $ lerna init
 lerna notice cli v3.20.2
@@ -523,7 +540,7 @@ Done in 49.46s.
  $ yarn serve
 ```
 
-### 04：启动服务lerna run serve --scope=lesson01 --stream 
+### 04：启动服务 lerna run serve --scope=lesson01 --stream
 
 ```shell
 Administrator@MBB2019 MINGW64 /f/tutorials (master)
@@ -538,7 +555,7 @@ lesson01: > vue-cli-service serve
 lesson01:  INFO  Starting development server...
 lesson01: <s> [webpack.Progress] 0% compiling
 lesson01: <s> [webpack.Progress] 10% building 0/0 modules 0 active
-lesson01: <s> [webpack.Progress] 10% building 0/1 modules 1 active multi F:\tutorials\node_modules\webpack-dev-server\client\index.js?http://192.168.0.102:8080/sockjs-node 
+lesson01: <s> [webpack.Progress] 10% building 0/1 modules 1 active multi F:\tutorials\node_modules\webpack-dev-server\client\index.js?http://192.168.0.102:8080/sockjs-node
 ...过程略
 lesson01: <s> [webpack.Progress] 95% emitting HtmlWebpackPlugin
 lesson01: <s> [webpack.Progress] 95% emitting CopyPlugin
@@ -553,9 +570,7 @@ lesson01:   Note that the development build is not optimized.
 lesson01:   To create a production build, run yarn build.
 ```
 
-
-
-### 05：安装所有包的依赖lerna bootstrap --hoist
+### 05：安装所有包的依赖 lerna bootstrap --hoist
 
 ```shell
 $ lerna bootstrap --hoist
@@ -570,7 +585,7 @@ lerna info Symlinking packages and binaries
 lerna success Bootstrapped 2 packages
 ```
 
-### 06：npm link过程(暂不用此方法)
+### 06：npm link 过程(暂不用此方法)
 
 ```shell
 # 当前目录F:\tutorials\node2\element-----------------------1
@@ -784,8 +799,6 @@ C:\Users\Administrator\AppData\Roaming\npm\node_modules\vue-router -> F:\tutoria
 
 ```
 
-
-
 ### 07: 建立链接后结果如下
 
 ```shell
@@ -796,7 +809,7 @@ F:\tutorials\node_modules\element-ui -> C:\Users\Administrator\AppData\Roaming\n
 
 ```
 
-### 08：windows-build-tools安装过程
+### 08：windows-build-tools 安装过程
 
 ```
 Microsoft Windows [版本 10.0.18362.329]
@@ -833,30 +846,32 @@ updated 1 package in 74.589s
 
 # 填坑过程
 
-### 坑1：node-sass安装失败
+### 坑 1：node-sass 安装失败
 
-- 第1步，打开--verbose才能真正找到问题出在哪里,本坑是因为找不到对应的win32-x64-72_binding.node
+- 第 1 步，打开--verbose 才能真正找到问题出在哪里,本坑是因为找不到对应的 win32-x64-72_binding.node
 
   ```shell
   $ npm install --verbose
   ```
 
-- 第2步，看node-sass官网,windows 缺少编译的运行环境，在win下安装node-gyp和windows-build-tools, https://github.com/nodejs/node-gyp#on-windows
+- 第 2 步，看 node-sass 官网,windows 缺少编译的运行环境，在 win 下安装 node-gyp 和 windows-build-tools, https://github.com/nodejs/node-gyp#on-windows
 
   ```shell
   $ npm install --global node-gyp
   $ npm install --global --production windows-build-tools # 以管理员身份安装，这一步会安装python
   ```
-- 第3步：清缓存和删除node_modules目录
+
+- 第 3 步：清缓存和删除 node_modules 目录
 
   ```shell
-  $ rm -rf node_modules 
+  $ rm -rf node_modules
   $ rm package-lock.json
   $ npm cache clean
   ```
-### 坑2：element安装依赖时
 
-在element包中执行npm link后发现报下面错误，再看看npm install也发现这个问题
+### 坑 2：element 安装依赖时
+
+在 element 包中执行 npm link 后发现报下面错误，再看看 npm install 也发现这个问题
 
 ```shell
 npm ERR! Cannot read property 'match' of undefined
@@ -870,38 +885,38 @@ $ rm package-lock.json
 $ npm install # 耗时2分26秒
 ```
 
-
-
 # 镜像改为淘宝
+
 ```shell
-$ npm config set registry https://registry.npm.taobao.org 
+$ npm config set registry https://registry.npm.taobao.org
 $ npm config list 查看配置
 $ yarn config set registry https://registry.npm.taobao.org -g
 $ yarn config list
 ```
+
 # 参考
 
-lerna用法参考: https://www.jianshu.com/p/f105e1427082
+lerna 用法参考: https://www.jianshu.com/p/f105e1427082
 
-lerna用法参考: https://www.jianshu.com/p/8b7e6025354b
+lerna 用法参考: https://www.jianshu.com/p/8b7e6025354b
 
-lerna link用法：https://stackoverflow.com/questions/49037987/allow-local-project-to-depend-on-local-lerna-packages?r=SearchResults
+lerna link 用法：https://stackoverflow.com/questions/49037987/allow-local-project-to-depend-on-local-lerna-packages?r=SearchResults
 
-lerna的add方法
+lerna 的 add 方法
 
 ```bash
 # 给a, b 包中加入Lodash，会同时改变a,b模块中packages.json文件
-lerna add lodash packages/a packages/b 
+lerna add lodash packages/a packages/b
 # 给a 包中加入jquery, 使用--dev参数是使依赖加入到devDependencies中
 lerna add jquery packages/a --dev
 # 你也可以使用通配符, 下面这命令，会往所有re开头的模块包中加入依赖
-lerna add jquery packages/re-* 
+lerna add jquery packages/re-*
 # 指定特定的范围，要使用--scope参数，如下：给b包安装a模块
 lerna add a --scope=b
 ```
 
 yarn 包提升 https://github.com/Hy-Vee/lerna-yarn-workspaces-monorepo
-npm link的用法
+npm link 的用法
 
 ```shell
 npm link   // 或 yarn link，在希望同步开发的组件包下执行（假设为component-a）
@@ -911,14 +926,16 @@ npm link   // 或 yarn link，在希望同步开发的组件包下执行（假�
 npm link component-a// 或 yarn link component-a
 ```
 
-yarn workspaces的用法
+yarn workspaces 的用法
 
-在package.json中增加workspaces字段，写入同目录下的目录名，然后在dependencies中指定workspaces中指定的目录下的包名，最后执行
+在 package.json 中增加 workspaces 字段，写入同目录下的目录名，然后在 dependencies 中指定 workspaces 中指定的目录下的包名，最后执行
 
 ```
 yarn// 或 yarn install 只适合" private": true的项目
 ```
+
 安装本地包的方法
+
 ```json
 # 修改F:\tutorials\package.json如下，使用本地依赖包
 {
@@ -932,6 +949,6 @@ yarn// 或 yarn install 只适合" private": true的项目
     "vuex": "file:node2\\vuex",
     "vue-router": "file:node2\\vue-router",
     "element-ui": "file:node2\\element"
-  } 
+  }
 }
 ```

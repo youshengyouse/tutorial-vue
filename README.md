@@ -1,40 +1,26 @@
 # vue 系列教学
 
-QQ 交流群(Vue):3180555323
+QQ 共同学习群(Vue):3180555323
 
 ## 一：vue 入门
 
-### 1.1 [使用lerna搭建前端开发环境]()
-
-
+### 1.1 [使用 lerna 搭建前端开发环境](./vue01_开发环境搭建.md)
 
 ## 二：vue-cli4
 
-### 
+###
 
 ## 三：vue-router
 
-
-
 ## 四：vuex
-
-
 
 ## 五：element-ui
 
-
-
 ## 六：uni-app
-
-
 
 ## 七：webpack
 
-
-
 ## 八：vuepress
-
-
 
 ## 九：常用组件
 
