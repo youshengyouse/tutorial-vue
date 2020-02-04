@@ -1,6 +1,7 @@
 ![vue01a](./imgs_tutorial/vue01a.jpg)
 
 > QQ 共同学习群(**Vue**):  3180555323
+>
 > QQ 共同学习群(**laravel**): 2922800186
 - lerna 官方网站：https://lerna.js.org/
 - vue 官方网站：https://cn.vuejs.org/
@@ -26,13 +27,13 @@
 ### 3. 全局安装 lerna，yarn，@vue/cli
 
 ```shell
-$ npm install --global lerna yarn @vue/cli // 耗时约4分钟(新装)，安装过程见01
+$ npm install --global lerna yarn @vue/cli  # 耗时约4分钟(新装)，安装过程见01
 ```
 
 ### 4.初始化 lerna
 
 ```shell
-$ lerna init # 当前目录为F:\www\tutorials，耗时11秒，安装过程及生成内容见02
+$ lerna init # 当前目录为F:\tutorial_vue，耗时11秒，安装过程及生成内容见02
 # 生成package.json，lerna.json，和packages目录
 ```
 
@@ -63,7 +64,7 @@ $ lerna init # 当前目录为F:\www\tutorials，耗时11秒，安装过程及�
 #### 5.新建 vue 项目
 
 ```shell
-# 以下工作目录全是 F:\tutorials\0001_vue
+# 以下工作目录全是 F:\tutorial_vue\01_vue
 $ vue create lesson01   # 耗时4分15秒，在vscode终端执行，使用vue_tutorial的预置也可手动
 $ vue create lesson02   # 耗时1分15秒，安装过程见03
 $ lerna clean           # 耗时1分40秒，删除上面所有包中的node-modules
@@ -79,7 +80,7 @@ $ lerna run serve --scope=lesson01 --stream # 启动耗时19秒，启动记录�
 下载源码
 
 ```shell
-# 本地node包的目录是F:\tutorials\node2(名字位置随意)
+# 本地node包的目录是F:\tutorial_vue\node2(名字位置随意)
 $ git clone git@github.com:vuejs/vue.git         # 36M耗时51秒,版本2.6.11
 $ git clone git@github.com:vuejs/vuex.git        # 11M耗时10秒，版本3.1.2
 $ git clone git@github.com:vuejs/vue-router.git  # 21M耗时19秒，版本3.1.5
@@ -91,25 +92,25 @@ $ git clone git@github.com:ElemeFE/element.git   # 82M耗时27秒(今天好快�
 ```shell
 #----------------------element-ui打包开始
 # 参考官方 https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.zh-CN.md
-$ npm install --verbose # 约3分钟,安装依赖,当前目录F:\tutorials\node2\element
+$ npm install --verbose # 约3分钟,安装依赖,当前目录F:\tutorial_vue\node2\element
 $ npm run dist   # 约1分30秒
 $ npm run dev    # 将package.json中dev删除npm run bootstrap &&掉，3分多钟打开是element-ui官网内容
 #----------------------element-ui打包结束
 # vue,vuex,vue-router三个包源码中已有打包的的目录，可省略下面的打包步骤
 
 #----------------------vue打包开始
-$ npm install --verbose # 安装依赖,当前目录F:\tutorials\node2\vue
+$ npm install --verbose # 安装依赖,当前目录F:\tutorial_vue\node2\vue
 $ npm run build    # 版本是2.6.11
 #----------------------vue打包结束
 
 #----------------------vuex打包开始
-$ npm install --verbose # 安装依赖,当前目录F:\tutorials\node2\vuex
+$ npm install --verbose # 安装依赖,当前目录F:\tutorial_vue\node2\vuex
 $ npm run build   # 版本是3.1.2
 $ npm run dev # 这里有官方提供的5个例子，会在后续的课程里讲
 #----------------------vuex打包结束
 
 #----------------------vue-router打包开始
-$ npm install --verbose # 安装依赖,当前目录F:\tutorials\node2\vue-router
+$ npm install --verbose # 安装依赖,当前目录F:\tutorial_vue\node2\vue-router
 $ npm run build   # 版本是3.1.5
 $ npm run dev # 这里有官方提供的20个例子，会在后续的专门课程里讲
 #----------------------vue-router打包结束
@@ -508,7 +509,7 @@ Vue CLI v4.1.2
 
 
 Vue CLI v4.1.2
-✨  Creating project in f:\tutorials\0001_vue\lesson01.
+✨  Creating project in F:\tutorial_vue\01_vue\lesson01.
 ⚙  Installing CLI plugins. This might take a while...
 
 yarn install v1.21.1
@@ -547,19 +548,19 @@ Done in 49.46s.
 ### 04：启动服务 lerna run serve --scope=lesson01 --stream
 
 ```shell
-Administrator@MBB2019 MINGW64 /f/tutorials (master)
+Administrator@MBB2019 MINGW64 /f/tutorials_vue (master)
 $ lerna run serve --scope=lesson01 --stream
 info cli using local version of lerna
 lerna notice cli v3.20.2
 lerna notice filter including "lesson01"
 lerna info filter [ 'lesson01' ]
 lerna info Executing command in 1 package: "npm run serve"
-lesson01: > lesson01@0.1.0 serve F:\tutorials\0001_vue\lesson01
+lesson01: > lesson01@0.1.0 serve F:\tutorials_vue\01_vue\lesson01
 lesson01: > vue-cli-service serve
 lesson01:  INFO  Starting development server...
 lesson01: <s> [webpack.Progress] 0% compiling
 lesson01: <s> [webpack.Progress] 10% building 0/0 modules 0 active
-lesson01: <s> [webpack.Progress] 10% building 0/1 modules 1 active multi F:\tutorials\node_modules\webpack-dev-server\client\index.js?http://192.168.0.102:8080/sockjs-node
+lesson01: <s> [webpack.Progress] 10% building 0/1 modules 1 active multi F:\tutorials_vue\node_modules\webpack-dev-server\client\index.js?http://192.168.0.102:8080/sockjs-node
 ...过程略
 lesson01: <s> [webpack.Progress] 95% emitting HtmlWebpackPlugin
 lesson01: <s> [webpack.Progress] 95% emitting CopyPlugin
@@ -589,231 +590,7 @@ lerna info Symlinking packages and binaries
 lerna success Bootstrapped 2 packages
 ```
 
-### 06：npm link 过程(暂不用此方法)
-
-```shell
-# 当前目录F:\tutorials\node2\element-----------------------1
-$ npm link
-npm WARN karma-webpack@3.0.5 requires a peer of webpack@^2.0.0 || ^3.0.0 but none is installed. You must install peer dependencies yourself.
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.2 (node_modules\karma\node_modules\fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules\fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
-
-up to date in 13.5s
-C:\Users\Administrator\AppData\Roaming\npm\node_modules\element-ui -> F:\tutorials\node2\element
-
-# 当前目录F:\tutorials\node2\vue----------------------------2
-Administrator@MBB2019 MINGW64 /f/tutorials/node2/vue (dev)
-$ npm link
-npm WARN deprecated phantomjs-prebuilt@2.1.16: this package is now deprecated
-npm WARN deprecated rollup-plugin-commonjs@9.3.4: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-commons.
-npm WARN deprecated os-homedir@2.0.0: This is not needed anymore. Use `require('os').homedir()` instead.
-npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
-npm WARN deprecated istanbul@0.4.5: This module is no longer maintained, try this instead:
-npm WARN deprecated   npm i nyc
-npm WARN deprecated Visit https://istanbul.js.org/integrations for other alternatives.
-npm WARN deprecated circular-json@0.5.9: CircularJSON is in maintenance only, flatted is its successor.
-npm WARN deprecated json3@3.3.2: Please use the native JSON object instead of JSON 3
-npm WARN deprecated socks@1.1.10: If using 2.x branch, please upgrade to at least 2.1.6 to avoid a serious bug with socket data flow and an import issue introduced in 2.1.0
-
-> phantomjs-prebuilt@2.1.16 install F:\tutorials\node2\vue\node_modules\phantomjs-prebuilt
-> node install.js
-
-PhantomJS not found on PATH
-Download already available at C:\Users\ADMINI~1\AppData\Local\Temp\phantomjs\phantomjs-2.1.1-windows.zip
-Verified checksum of previously downloaded file
-Extracting zip contents
-Removing F:\tutorials\node2\vue\node_modules\phantomjs-prebuilt\lib\phantom
-Copying extracted folder C:\Users\ADMINI~1\AppData\Local\Temp\phantomjs\phantomjs-2.1.1-windows.zip-extract-1579403305888\phantomjs-2.1.1-windows -> F:\tutorials\node2\vue\node_modules\phantomjs-prebuilt\lib\phantom
-Writing location.js file
-Done. Phantomjs binary available at F:\tutorials\node2\vue\node_modules\phantomjs-prebuilt\lib\phantom\bin\phantomjs.exe
-
-> chromedriver@2.46.0 install F:\tutorials\node2\vue\node_modules\chromedriver
-> node install.js
-
-ChromeDriver binary exists. Validating...
-ChromeDriver 2.46.628402 (536cd7adbad73a3783fdc2cab92ab2ba7ec361e1)
-
-ChromeDriver is already available at 'C:\Users\ADMINI~1\AppData\Local\Temp\2.46\chromedriver\chromedriver.exe'.
-Copying to target path F:\tutorials\node2\vue\node_modules\chromedriver\lib\chromedriver
-Done. ChromeDriver binary available at F:\tutorials\node2\vue\node_modules\chromedriver\lib\chromedriver\chromedriver.exe
-
-> puppeteer@1.20.0 install F:\tutorials\node2\vue\node_modules\puppeteer
-> node install.js
-
-
-Chromium downloaded to F:\tutorials\node2\vue\node_modules\puppeteer\.local-chromium\win64-686378
-
-> yorkie@2.0.0 install F:\tutorials\node2\vue\node_modules\yorkie
-> node bin/install.js
-
-setting up Git hooks
-done
-
-
-> core-js@2.6.11 postinstall F:\tutorials\node2\vue\node_modules\core-js
-> node -e "try{require('./postinstall')}catch(e){}"
-
-Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
-
-The project needs your help! Please consider supporting of core-js on Open Collective or Patreon:
-> https://opencollective.com/core-js
-> https://www.patreon.com/zloirock
-
-Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
-
-
-> spawn-sync@1.0.15 postinstall F:\tutorials\node2\vue\node_modules\spawn-sync
-> node postinstall
-
-
-> sauce-connect-launcher@1.3.1 postinstall F:\tutorials\node2\vue\node_modules\sauce-connect-launcher
-> node scripts/install.js || nodejs scripts/install.js
-
-
-> commitizen@2.10.1 postinstall F:\tutorials\node2\vue\node_modules\commitizen
-> opencollective postinstall
-
-
-     *** Thank you for using commitizen! ***
-
-Please consider donating to our open collective
-     to help us maintain this package.
-
-  https://opencollective.com/commitizen/donate
-
-                    ***
-
-npm notice created a lockfile as package-lock.json. You should commit this file.
-npm WARN acorn-dynamic-import@4.0.0 requires a peer of acorn@^6.0.0 but none is installed. You must install peer dependencies yourself.
-npm WARN acorn-jsx@5.1.0 requires a peer of acorn@^6.0.0 || ^7.0.0 but none is installed. You must install peer dependencies yourself.
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules\fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
-
-added 1418 packages from 1538 contributors in 158.235s
-C:\Users\Administrator\AppData\Roaming\npm\node_modules\vue -> F:\tutorials\node2\vue
-
-# 当前目录F:\tutorials\node2\vuex----------------------------------3
-Administrator@MBB2019 MINGW64 /f/tutorials/node2/vuex (dev)
-$ npm link
-npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
-npm WARN deprecated os-homedir@2.0.0: This is not needed anymore. Use `require('os').homedir()` instead.
-npm WARN deprecated joi@11.4.0: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
-npm WARN deprecated hoek@4.2.1: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
-npm WARN deprecated topo@2.0.2: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
-npm WARN deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
-
-> chromedriver@78.0.1 install F:\tutorials\node2\vuex\node_modules\chromedriver
-> node install.js
-
-ChromeDriver binary exists. Validating...
-ChromeDriver 78.0.3904.70 (edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5-refs/branch-heads/3904@{#800})
-
-ChromeDriver is already available at 'C:\Users\ADMINI~1\AppData\Local\Temp\78.0.3904.70\chromedriver\chromedriver.exe'.
-Copying to target path F:\tutorials\node2\vuex\node_modules\chromedriver\lib\chromedriver
-Done. ChromeDriver binary available at F:\tutorials\node2\vuex\node_modules\chromedriver\lib\chromedriver\chromedriver.exe
-
-> core-js@2.6.11 postinstall F:\tutorials\node2\vuex\node_modules\core-js
-> node -e "try{require('./postinstall')}catch(e){}"
-
-Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
-
-The project needs your help! Please consider supporting of core-js on Open Collective or Patreon:
-> https://opencollective.com/core-js
-> https://www.patreon.com/zloirock
-
-Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
-
-
-> ejs@2.7.4 postinstall F:\tutorials\node2\vuex\node_modules\ejs
-> node ./postinstall.js
-
-Thank you for installing EJS: built with the Jake JavaScript build tool (https://jakejs.com/)
-
-npm notice created a lockfile as package-lock.json. You should commit this file.
-npm WARN eslint-plugin-vue-libs@3.0.2 requires a peer of eslint@^4.7.0 but none is installed. You must install peer dependencies yourself.
-npm WARN nightwatch@1.3.2 requires a peer of geckodriver@* but none is installed. You must install peer dependencies yourself.
-npm WARN webpack-dev-middleware@1.12.2 requires a peer of webpack@^1.0.0 || ^2.0.0 || ^3.0.0 but none is installed. You must install peer dependencies yourself.
-npm WARN eslint-plugin-vue@4.7.1 requires a peer of eslint@^3.18.0 || ^4.0.0 but none is installed. You must install peer dependencies yourself.
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules\fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
-
-added 1927 packages from 1299 contributors in 180.067s
-C:\Users\Administrator\AppData\Roaming\npm\node_modules\vuex -> F:\tutorials\node2\vuex
-
-# 当前目录F:\tutorials\node2\vue-router--------------------------4
-Administrator@MBB2019 MINGW64 /f/tutorials/node2/vue-router (dev)
-$ npm link
-npm WARN deprecated rollup-watch@4.3.1: rollup-watch functionality is now included in Rollup itself
-npm WARN deprecated rollup-plugin-commonjs@10.1.0: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-commons.
-npm WARN deprecated os-homedir@2.0.0: This is not needed anymore. Use `require('os').homedir()` instead.
-npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
-npm WARN deprecated joi@11.4.0: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
-npm WARN deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
-npm WARN deprecated topo@2.0.2: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
-npm WARN deprecated hoek@4.2.1: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
-npm WARN deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
-
-> chromedriver@79.0.0 install F:\tutorials\node2\vue-router\node_modules\chromedriver
-> node install.js
-
-ChromeDriver binary exists. Validating...
-ChromeDriver 79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614})
-
-ChromeDriver is already available at 'C:\Users\ADMINI~1\AppData\Local\Temp\79.0.3945.36\chromedriver\chromedriver.exe'.
-Copying to target path F:\tutorials\node2\vue-router\node_modules\chromedriver\lib\chromedriver
-Done. ChromeDriver binary available at F:\tutorials\node2\vue-router\node_modules\chromedriver\lib\chromedriver\chromedriver.exe
-
-> yorkie@2.0.0 install F:\tutorials\node2\vue-router\node_modules\yorkie
-> node bin/install.js
-
-setting up Git hooks
-done
-
-
-> core-js@2.6.11 postinstall F:\tutorials\node2\vue-router\node_modules\core-js
-> node -e "try{require('./postinstall')}catch(e){}"
-
-Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
-
-The project needs your help! Please consider supporting of core-js on Open Collective or Patreon:
-> https://opencollective.com/core-js
-> https://www.patreon.com/zloirock
-
-Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
-
-
-> ejs@2.7.4 postinstall F:\tutorials\node2\vue-router\node_modules\ejs
-> node ./postinstall.js
-
-Thank you for installing EJS: built with the Jake JavaScript build tool (https://jakejs.com/)
-
-
-> geckodriver@1.19.1 postinstall F:\tutorials\node2\vue-router\node_modules\geckodriver
-> node index.js
-
-Downloading geckodriver... Extracting... Complete.
-npm notice created a lockfile as package-lock.json. You should commit this file.
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules\fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
-
-added 2000 packages from 1348 contributors in 192.817s
-C:\Users\Administrator\AppData\Roaming\npm\node_modules\vue-router -> F:\tutorials\node2\vue-router
-
-```
-
-### 07: 建立链接后结果如下
-
-```shell
-F:\tutorials\node_modules\vue -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\vue -> F:\tutorials\node2\vue
-F:\tutorials\node_modules\vuex -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\vuex -> F:\tutorials\node2\vuex
-F:\tutorials\node_modules\vue-router -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\vue-router -> F:\tutorials\node2\vue-router
-F:\tutorials\node_modules\element-ui -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\element-ui -> F:\tutorials\node2\element
-
-```
-
-### 08：windows-build-tools 安装过程
+### 06：windows-build-tools 安装过程
 
 ```
 Microsoft Windows [版本 10.0.18362.329]
@@ -941,7 +718,7 @@ yarn// 或 yarn install 只适合" private": true的项目
 安装本地包的方法
 
 ```json
-# 修改F:\tutorials\package.json如下，使用本地依赖包
+# 修改F:\tutorial_vue\package.json如下，使用本地依赖包
 {
   "name": "root",
   "private": true,
