@@ -8,11 +8,12 @@
 - vue-cli 官方网站：https://cli.vuejs.org/zh/
 - vuex 官方网站：https://vuex.vuejs.org/zh/
 - vue-router 官方网站：https://router.vuejs.org/zh/
-- element-ui 官方网站：https://element.eleme.cn/#/zh-CN/
+- Element ui 官方网站：https://element.eleme.cn/#/zh-CN/
+- Mint ui 官方网站： http://mint-ui.github.io/#!/zh-cn
+- dcloud提供的视频教程: https://learning.dcloud.io/#/
 
 
-
-# 搭建前端开发环境
+# 准备工作
 
 > 以下使用的是 npm
 
@@ -30,13 +31,48 @@
 $ npm install --global lerna yarn @vue/cli  # 耗时约4分钟(新装)，安装过程见01
 ```
 
-### 4.初始化 lerna
+有关vue项目的新建，我分三个部分来讲，分别针对不同水平的学生。其中使用vue create命令新建是必须要掌握，后面两种是可选的。
+
+# 初级篇：使用vue/cli新建vue项目
+
+适合初级玩家，只需要熟悉使用脚手架提供的vue create命令新建项目即可，非常方便，只需要几分种就ok
+
+**目录准备**：从零开始
+
+```shell
+$ mkdir tutorial_vue && cd $_ && mkdir 01_vue 02_vuex 03_vue-router 04_element-ui 05_vuepress  node2
+# 01_vue  vue教程,以下目录先建好放着，是我的讲课安排
+# 02_vuex vuex教程
+# 03_vue-router vue-router教程
+# 04_element-ui element-ui教程
+# 05_vuepress vuepress教程
+# node2 本地安装包
+```
+
+**新建项目**
+
+```shell
+# 以下工作目录全是 F:\tutorial_vue\01_vue
+$ vue create lesson01   # 耗时4分15秒，在vscode终端执行，使用vue_tutorial的预置也可手动
+$ vue create lesson02   # 耗时1分15秒，安装过程见03
+
+# 启动服务器,当前目录是F:\tutorial_vue\01_vue\lesson01|2
+$ yarn serve
+# 启动后修改app.vue演示一下，新手可以到此为止下面的可以不用看了。
+```
+
+
+
+# 中级篇：使用lerna来管理依赖模块
+
+适合中级玩家，先简要说下lerna，它是一个用来管理有多个packages的项目的工具，https://lerna.js.org/#users  列出了好多项目是使用lerna来管理的，象著名的webpack，babel，react, 及我们后面会讲到的vue,element都是使用lerna来管理模块的。所以掌握它也是一个趋势。
+
+**初始化 lerna项目**
 
 ```shell
 $ lerna init # 当前目录为F:\tutorial_vue，耗时11秒，安装过程及生成内容见02
 # 生成package.json，lerna.json，和packages目录
 ```
-
 修改 lerna.json 如下
 
 ```json
@@ -60,34 +96,40 @@ $ lerna init # 当前目录为F:\tutorial_vue，耗时11秒，安装过程及生
 }
 # 不用修改
 ```
-
-#### 5.新建 vue 项目
+**使用lerna安装依赖**
 
 ```shell
-# 以下工作目录全是 F:\tutorial_vue\01_vue
-$ vue create lesson01   # 耗时4分15秒，在vscode终端执行，使用vue_tutorial的预置也可手动
-$ vue create lesson02   # 耗时1分15秒，安装过程见03
 $ lerna clean           # 耗时1分40秒，删除上面所有包中的node-modules
 # $ lerna link --force-local   # 会在各个同级包中建立symbol link，打开node_modules中可以看到
 $ lerna bootstrap --hoist  # 上面2个项目耗时3分20秒,安装过程见05，--hoist选项，所有公共的依赖都只会安装在根目录的node_modules中,不会在每个包目录下的node_modules中都保留各自的依赖包
-$ lerna run serve --scope=lesson01 --stream # 启动耗时19秒，启动记录见安装过程04
-#$ lerna run serve --concurrency 2 --stream  # 同时启动2个个服务都
-# 如果出错，请三清，清缓存，删node_modules目录，删package-lock.json再bootstrap
 ```
 
-#### 6.本地安装常用库
+**启动指定包**
 
-下载源码
+```shell
+$ lerna run serve --scope=lesson01 --stream # 启动耗时19秒，启动记录见安装过程04
+#$ lerna run serve --concurrency 2 --stream  # 同时启动2个个服务都
+# 如果出错，请3删，清缓存，删node_modules目录，删package-lock.json
+```
+
+
+
+# 高级篇：本地安装依赖包
+
+为了更好的研究和自定制vue,vuex,vue-router,element-ui等库，建议本地安装它们，当然自己也的私有包也可使用这种方法安装，不用publish到npm 仓库中
+
+**下载源码**，不再从仓库中下载了
 
 ```shell
 # 本地node包的目录是F:\tutorial_vue\node2(名字位置随意)
 $ git clone git@github.com:vuejs/vue.git         # 36M耗时51秒,版本2.6.11
+$ git clone git@github.com:vuejs/vue-next.git    # 3.0.0-alpha.4
 $ git clone git@github.com:vuejs/vuex.git        # 11M耗时10秒，版本3.1.2
 $ git clone git@github.com:vuejs/vue-router.git  # 21M耗时19秒，版本3.1.5
 $ git clone git@github.com:ElemeFE/element.git   # 82M耗时27秒(今天好快，达4M/s,上午10点快)
 ```
 
-源码打包
+**源码打包**
 
 ```shell
 #----------------------element-ui打包开始
@@ -114,11 +156,9 @@ $ npm install --verbose # 安装依赖,当前目录F:\tutorial_vue\node2\vue-rou
 $ npm run build   # 版本是3.1.5
 $ npm run dev # 这里有官方提供的20个例子，会在后续的专门课程里讲
 #----------------------vue-router打包结束
-
-
 ```
 
-修改 lesson01 和 lesson02 下 package.json 中相关依赖的版本
+修改各个package中的 package.json 中相关依赖的版本
 
 ```shell
 # 修改了3处
@@ -157,7 +197,7 @@ $ npm run dev # 这里有官方提供的20个例子，会在后续的专门课�
 
 ```
 
-重新安装 lesson01 和 lesson02 依赖
+重新安装各个package中的依赖
 
 ```shell
 # 清除相应文件和目录
@@ -169,10 +209,195 @@ $ lerna link convert # 这一步很关键，见下面详细描述
 
 $ lerna bootstrap --hoist
 $ lerna run serve --scope=lesson01 --stream
+
+# 也可以启动各个本地包，方便源码的研究和教学
 $ lerna run dev --scope=vuex --stream
 ```
 
-`lerna link convert`后的变化
+总结：本节课的内容比较简单，从下节课开始进入vue  3.0的使用
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------以下部分不是教程的内容，可忽略不看----------------------------------------
+
+# 安装过程
+
+### 01：全局安装 lerna，yarn，@vue/cli
+
+```shell
+$ npm install --global lerna yarn @vue/cli
+npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
+C:\Users\Administrator\AppData\Roaming\npm\yarn -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+C:\Users\Administrator\AppData\Roaming\npm\yarnpkg -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+C:\Users\Administrator\AppData\Roaming\npm\vue -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\@vue\cli\bin\vue.js
+C:\Users\Administrator\AppData\Roaming\npm\lerna -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\lerna\cli.js
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules\@vue\cli\node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @vue/cli@4.1.2
++ lerna@3.20.2
++ yarn@1.21.1
+removed 1 package and updated 3 packages in 55.988s
+
+```
+
+### 02：lerna 初始化
+
+```shell
+$ lerna init
+lerna notice cli v3.20.2
+lerna info Creating package.json
+lerna info Creating lerna.json
+lerna info Creating packages directory
+lerna success Initialized Lerna files
+
+# 查看生成的目录和文件
+$ tree
+.
+|-- lerna.json
+|-- package.json
+`-- packages
+
+1 directory, 2 files
+```
+
+### 03：vue create 生成新项目
+
+```shell
+$ vue create lesson01
+
+
+Vue CLI v4.1.2
+? Please pick a preset: vue-tutorial (node-sass, babel, router, vuex, eslint)
+
+
+Vue CLI v4.1.2
+✨  Creating project in F:\tutorial_vue\01_vue\lesson01.
+⚙  Installing CLI plugins. This might take a while...
+
+yarn install v1.21.1
+info No lockfile found.
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+info fsevents@1.2.11: The platform "win32" is incompatible with this module.
+info "fsevents@1.2.11" is an optional dependency and failed compatibility check. Excluding it from installation.
+
+
+success Saved lockfile.
+Done in 154.84s.
+�🚀  Invoking generators...
+�📦  Installing additional dependencies...
+
+yarn install v1.21.1
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+info fsevents@1.2.11: The platform "win32" is incompatible with this module.
+info "fsevents@1.2.11" is an optional dependency and failed compatibility check. Excluding it from installation.
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+Done in 49.46s.
+⚓  Running completion hooks...
+
+�📄  Generating README.md...
+
+�🎉  Successfully created project lesson01.
+�👉  Get started with the following commands:
+
+ $ cd lesson01
+ $ yarn serve
+```
+
+### 04：启动服务 lerna run serve --scope=lesson01 --stream
+
+```shell
+Administrator@MBB2019 MINGW64 /f/tutorials_vue (master)
+$ lerna run serve --scope=lesson01 --stream
+info cli using local version of lerna
+lerna notice cli v3.20.2
+lerna notice filter including "lesson01"
+lerna info filter [ 'lesson01' ]
+lerna info Executing command in 1 package: "npm run serve"
+lesson01: > lesson01@0.1.0 serve F:\tutorials_vue\01_vue\lesson01
+lesson01: > vue-cli-service serve
+lesson01:  INFO  Starting development server...
+lesson01: <s> [webpack.Progress] 0% compiling
+lesson01: <s> [webpack.Progress] 10% building 0/0 modules 0 active
+lesson01: <s> [webpack.Progress] 10% building 0/1 modules 1 active multi F:\tutorials_vue\node_modules\webpack-dev-server\client\index.js?http://192.168.0.102:8080/sockjs-node
+...过程略
+lesson01: <s> [webpack.Progress] 95% emitting HtmlWebpackPlugin
+lesson01: <s> [webpack.Progress] 95% emitting CopyPlugin
+lesson01: <s> [webpack.Progress] 98% after emitting
+lesson01: <s> [webpack.Progress] 98% after emitting CopyPlugin
+lesson01:  DONE  Compiled successfully in 7937ms9:57:27
+lesson01: <s> [webpack.Progress] 100%
+lesson01:   App running at:
+lesson01:   - Local:   http://localhost:8080/
+lesson01:   - Network: http://192.168.0.102:8080/
+lesson01:   Note that the development build is not optimized.
+lesson01:   To create a production build, run yarn build.
+```
+
+### 05：安装所有包的依赖 lerna bootstrap --hoist
+
+```shell
+$ lerna bootstrap --hoist
+lerna notice cli v3.20.2
+lerna info Bootstrapping 2 packages
+lerna info Installing external dependencies
+lerna info hoist Installing hoisted dependencies into root
+lerna info hoist Pruning hoisted dependencies
+lerna info hoist Finished pruning hoisted dependencies
+lerna info hoist Finished bootstrapping root
+lerna info Symlinking packages and binaries
+lerna success Bootstrapped 2 packages
+```
+
+### 06：windows-build-tools 安装过程
+
+```
+Microsoft Windows [版本 10.0.18362.329]
+(c) 2019 Microsoft Corporation。保留所有权利。
+
+C:\Windows\system32>npm install --global --production windows-build-tools
+
+> windows-build-tools@5.2.2 postinstall C:\Users\Administrator\AppData\Roaming\npm\node_modules\windows-build-tools
+> node ./dist/index.js
+
+Downloading python-2.7.15.amd64.msi
+[============================================>] 100.0% of 20.25 MB (9 MB/s)
+Downloaded python-2.7.15.amd64.msi. Saved to C:\Users\Administrator\.windows-build-tools\python-2.7.15.amd64.msi.
+Downloading vs_BuildTools.exe
+[>                                            ] 0.0% (0 B/s)
+Downloaded vs_BuildTools.exe. Saved to C:\Users\Administrator\.windows-build-tools\vs_BuildTools.exe.
+
+Starting installation...
+Launched installers, now waiting for them to finish.
+This will likely take some time - please be patient!
+
+Status from the installers:
+---------- Visual Studio Build Tools ----------
+Successfully installed Visual Studio Build Tools.
+------------------- Python --------------------
+
+Now configuring the Visual Studio Build Tools and Python...
+
+All done!
+
++ windows-build-tools@5.2.2
+updated 1 package in 74.589s
+```
+### 07：`lerna link convert`后的变化
 
 ```json
 # 根package.json由
@@ -419,212 +644,6 @@ $ lerna run dev --scope=vuex --stream
 
 ```
 
-# 二：编辑器准备
-
-- Vscode: js,css,html 等前端语言编辑器(eslint+prettier)
-- phpstorm: php 编辑器
-
-### A: VSCode 配置
-
-#### 格式化和校验
-
-- 安装扩展 eslint: 在扩展中搜 eslint，安装即可，扩展 eslint 是基于 eslint 这个 node 包工作的，可项目或全局安装 eslint 包
-- 安装扩展 Prettier - Code formatter：这个扩展要使用到 node 包 prettier，所以得全局或项目内安装它
-- 安装扩展 EditorConfig for VS Code: 参考 `https://blog.csdn.net/Gabriel_wei/article/details/90286668`
-
-```shell
-$ npm install -g eslint            # 方便所有项目都使用
-$ npm install -g prettier          # 扩展 Prettier - Code formatter 要用到它
-$ npm install -g editorconfig
-```
-
-#### 其它
-
-- 终端 shell 环境配置: `"terminal.integrated.shell.windows": "D:\\01Program Files\\Git\\bin\\bash.exe",`
-- 安装自己喜欢的主题: 我装 AS Roma Dark，在扩展中搜 theme，出来一堆，网上能搜到好多主题推荐，在`https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs`上搜到好多
-- vetur 扩展：是开发 vue 必装扩展
-- Chinese Lorem：输入 jw 按 tab 就可以生成假文字，是汉字的，比较好用，jw50 表示生成 50 个汉字
-- Bracket Pair Colorizer: 这个实用，不同级别的括号使用不同的颜色区分，它有 2 个版本，我装的是第 2 版
-- bracket-padder: 这个是为了提高效率用，会成对输入括号{}{}()
-- open in browser: 可右键打开浏览器
-- javascript(es6) code snippets，快速输入代码用
-- 激活`emmet`，在配置中搜`emmet`，勾选 `trigger expansion on tab`
-
-### B:PHPStorm 配置
-
-- 终端 shell 环境配置: File -> Setting ->Tools -> Terminal，将 shell path 改为`D:\01Program Files\Git\bin\bash.exe`，并安装`native terminal`
-- 安装自己喜欢的主题: File -> Setting -> Plugins 中 输入 theme 就可以搜到一堆主题，我一下子安装了 10 个主题
-- ssh 配置：远程连接服务器，`Tools -> Deployment -> Configuration`
-- 数据库配置:`View -> Tool Window -> Database`,第一次会提示下载相应的驱动
-
-# 安装过程
-
-### 01：全局安装 lerna，yarn，@vue/cli
-
-```shell
-$ npm install --global lerna yarn @vue/cli
-npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
-C:\Users\Administrator\AppData\Roaming\npm\yarn -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
-C:\Users\Administrator\AppData\Roaming\npm\yarnpkg -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
-C:\Users\Administrator\AppData\Roaming\npm\vue -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\@vue\cli\bin\vue.js
-C:\Users\Administrator\AppData\Roaming\npm\lerna -> C:\Users\Administrator\AppData\Roaming\npm\node_modules\lerna\cli.js
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules\@vue\cli\node_modules\fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
-
-+ @vue/cli@4.1.2
-+ lerna@3.20.2
-+ yarn@1.21.1
-removed 1 package and updated 3 packages in 55.988s
-
-```
-
-### 02：lerna 初始化
-
-```shell
-$ lerna init
-lerna notice cli v3.20.2
-lerna info Creating package.json
-lerna info Creating lerna.json
-lerna info Creating packages directory
-lerna success Initialized Lerna files
-
-# 查看生成的目录和文件
-$ tree
-.
-|-- lerna.json
-|-- package.json
-`-- packages
-
-1 directory, 2 files
-```
-
-### 03：vue create 生成新项目
-
-```shell
-$ vue create lesson01
-
-
-Vue CLI v4.1.2
-? Please pick a preset: vue-tutorial (node-sass, babel, router, vuex, eslint)
-
-
-Vue CLI v4.1.2
-✨  Creating project in F:\tutorial_vue\01_vue\lesson01.
-⚙  Installing CLI plugins. This might take a while...
-
-yarn install v1.21.1
-info No lockfile found.
-[1/4] Resolving packages...
-[2/4] Fetching packages...
-info fsevents@1.2.11: The platform "win32" is incompatible with this module.
-info "fsevents@1.2.11" is an optional dependency and failed compatibility check. Excluding it from installation.
-
-
-success Saved lockfile.
-Done in 154.84s.
-�🚀  Invoking generators...
-�📦  Installing additional dependencies...
-
-yarn install v1.21.1
-[1/4] Resolving packages...
-[2/4] Fetching packages...
-info fsevents@1.2.11: The platform "win32" is incompatible with this module.
-info "fsevents@1.2.11" is an optional dependency and failed compatibility check. Excluding it from installation.
-[3/4] Linking dependencies...
-[4/4] Building fresh packages...
-success Saved lockfile.
-Done in 49.46s.
-⚓  Running completion hooks...
-
-�📄  Generating README.md...
-
-�🎉  Successfully created project lesson01.
-�👉  Get started with the following commands:
-
- $ cd lesson01
- $ yarn serve
-```
-
-### 04：启动服务 lerna run serve --scope=lesson01 --stream
-
-```shell
-Administrator@MBB2019 MINGW64 /f/tutorials_vue (master)
-$ lerna run serve --scope=lesson01 --stream
-info cli using local version of lerna
-lerna notice cli v3.20.2
-lerna notice filter including "lesson01"
-lerna info filter [ 'lesson01' ]
-lerna info Executing command in 1 package: "npm run serve"
-lesson01: > lesson01@0.1.0 serve F:\tutorials_vue\01_vue\lesson01
-lesson01: > vue-cli-service serve
-lesson01:  INFO  Starting development server...
-lesson01: <s> [webpack.Progress] 0% compiling
-lesson01: <s> [webpack.Progress] 10% building 0/0 modules 0 active
-lesson01: <s> [webpack.Progress] 10% building 0/1 modules 1 active multi F:\tutorials_vue\node_modules\webpack-dev-server\client\index.js?http://192.168.0.102:8080/sockjs-node
-...过程略
-lesson01: <s> [webpack.Progress] 95% emitting HtmlWebpackPlugin
-lesson01: <s> [webpack.Progress] 95% emitting CopyPlugin
-lesson01: <s> [webpack.Progress] 98% after emitting
-lesson01: <s> [webpack.Progress] 98% after emitting CopyPlugin
-lesson01:  DONE  Compiled successfully in 7937ms9:57:27
-lesson01: <s> [webpack.Progress] 100%
-lesson01:   App running at:
-lesson01:   - Local:   http://localhost:8080/
-lesson01:   - Network: http://192.168.0.102:8080/
-lesson01:   Note that the development build is not optimized.
-lesson01:   To create a production build, run yarn build.
-```
-
-### 05：安装所有包的依赖 lerna bootstrap --hoist
-
-```shell
-$ lerna bootstrap --hoist
-lerna notice cli v3.20.2
-lerna info Bootstrapping 2 packages
-lerna info Installing external dependencies
-lerna info hoist Installing hoisted dependencies into root
-lerna info hoist Pruning hoisted dependencies
-lerna info hoist Finished pruning hoisted dependencies
-lerna info hoist Finished bootstrapping root
-lerna info Symlinking packages and binaries
-lerna success Bootstrapped 2 packages
-```
-
-### 06：windows-build-tools 安装过程
-
-```
-Microsoft Windows [版本 10.0.18362.329]
-(c) 2019 Microsoft Corporation。保留所有权利。
-
-C:\Windows\system32>npm install --global --production windows-build-tools
-
-> windows-build-tools@5.2.2 postinstall C:\Users\Administrator\AppData\Roaming\npm\node_modules\windows-build-tools
-> node ./dist/index.js
-
-Downloading python-2.7.15.amd64.msi
-[============================================>] 100.0% of 20.25 MB (9 MB/s)
-Downloaded python-2.7.15.amd64.msi. Saved to C:\Users\Administrator\.windows-build-tools\python-2.7.15.amd64.msi.
-Downloading vs_BuildTools.exe
-[>                                            ] 0.0% (0 B/s)
-Downloaded vs_BuildTools.exe. Saved to C:\Users\Administrator\.windows-build-tools\vs_BuildTools.exe.
-
-Starting installation...
-Launched installers, now waiting for them to finish.
-This will likely take some time - please be patient!
-
-Status from the installers:
----------- Visual Studio Build Tools ----------
-Successfully installed Visual Studio Build Tools.
-------------------- Python --------------------
-
-Now configuring the Visual Studio Build Tools and Python...
-
-All done!
-
-+ windows-build-tools@5.2.2
-updated 1 package in 74.589s
-```
-
 # 填坑过程
 
 ### 坑 1：node-sass 安装失败
@@ -666,6 +685,47 @@ $ rm package-lock.json
 $ npm install # 耗时2分26秒
 ```
 
+
+# 编辑器准备
+
+- Vscode: js,css,html 等前端语言编辑器(eslint+prettier)
+- phpstorm: php 编辑器
+
+### A: VSCode 配置
+
+#### 格式化和校验
+
+- 安装扩展 eslint: 在扩展中搜 eslint，安装即可，扩展 eslint 是基于 eslint 这个 node 包工作的，可项目或全局安装 eslint 包
+- 安装扩展 Prettier - Code formatter：这个扩展要使用到 node 包 prettier，所以得全局或项目内安装它
+- 安装扩展 EditorConfig for VS Code: 参考 `https://blog.csdn.net/Gabriel_wei/article/details/90286668`
+
+```shell
+$ npm install -g eslint            # 方便所有项目都使用
+$ npm install -g prettier          # 扩展 Prettier - Code formatter 要用到它
+$ npm install -g editorconfig
+```
+
+#### 其它
+
+- 终端 shell 环境配置: `"terminal.integrated.shell.windows": "D:\\01Program Files\\Git\\bin\\bash.exe",`
+- 安装自己喜欢的主题: 我装 AS Roma Dark，在扩展中搜 theme，出来一堆，网上能搜到好多主题推荐，在`https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs`上搜到好多
+- vetur 扩展：是开发 vue 必装扩展
+- Chinese Lorem：输入 jw 按 tab 就可以生成假文字，是汉字的，比较好用，jw50 表示生成 50 个汉字
+- Bracket Pair Colorizer: 这个实用，不同级别的括号使用不同的颜色区分，它有 2 个版本，我装的是第 2 版
+- bracket-padder: 这个是为了提高效率用，会成对输入括号{}{}()
+- open in browser: 可右键打开浏览器
+- javascript(es6) code snippets，快速输入代码用
+- 激活`emmet`，在配置中搜`emmet`，勾选 `trigger expansion on tab`
+
+### B:PHPStorm 配置
+
+- 终端 shell 环境配置: File -> Setting ->Tools -> Terminal，将 shell path 改为`D:\01Program Files\Git\bin\bash.exe`，并安装`native terminal`
+- 安装自己喜欢的主题: File -> Setting -> Plugins 中 输入 theme 就可以搜到一堆主题，我一下子安装了 10 个主题
+- ssh 配置：远程连接服务器，`Tools -> Deployment -> Configuration`
+- 数据库配置:`View -> Tool Window -> Database`,第一次会提示下载相应的驱动
+
+
+
 # 镜像改为淘宝
 
 ```shell
@@ -675,7 +735,11 @@ $ yarn config set registry https://registry.npm.taobao.org -g
 $ yarn config list
 ```
 
-# 参考
+
+
+
+
+# 参考部分(待整理)
 
 lerna 用法参考: https://www.jianshu.com/p/f105e1427082
 
